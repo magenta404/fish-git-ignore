@@ -6,3 +6,6 @@ end
 function _gitignore_uninstall --on-event gitignore_uninstall
   git config --global --unset alias.ignore
 end
+
+# Will not work otherwise.
+source (realpath (dirname (status --current-filename))/..)/completions/gitignore.fish
