@@ -1,7 +1,8 @@
-git config --global alias.ignore '!f() { args=$@; fish --command "__gitignore $args"; }; f'
+function _gitignore_install --on-event gitignore_install
+  git config --global --unset alias.ignore
+  git config --global alias.ignore '!f() { args=$@; fish --command "__gitignore $args"; }; f'
+end
 
-set --local name (basename (status filename) .fish){_uninstall}
-
-function $name --on-event $name
+function _gitignore_uninstall --on-event gitignore_uninstall
   git config --global --unset alias.ignore
 end
